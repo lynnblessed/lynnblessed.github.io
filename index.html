@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .content {
+        display: flex;
+        height:800px;
+        justify-content: center;
+        align-items: center;
+      }
+      .puzzleBox {
+        display: flex;
+        padding: 20px;
+        border-radius: 10px;
+        border:1px solid #DCDCDC;
+        box-shadow:1px 1px 1px 1px #DCDCDC;
+        margin:auto;
+      }
+      img{
+        margin:0 auto
+      }
+      #question{
+        display: flex;
+        flex-direction: column;
+        height:500px;
+        width: 500px;
+      }
+      .explain-card{
+        height: 500px;
+        width:300px;
+        background-color: #EFEFEF;
+        padding:10px;
+        border-radius:10px;
+      }
+      h2 {
+        font-family: zihun95hao-shoukesong, sans-serif;
+        font-size: 2em;
+        background: linear-gradient(to right, black, blue);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: inline-block;
+        margin:10px auto 10px auto;
+      }
+
+      p {
+        font-family: "Times New Roman", Times, serif;
+      }
+      #explanation{
+        line-height:27px;
+        padding:7px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+    <div class="puzzleBox">
+      <div id="question">
+      <h2>数学谜题</h2>
+
+      <img
+        src="https://th.bing.com/th/id/R.64e59eb8ba618c9854e3cbf9160fd641?rik=y7DHiZ6opXNmOg&pid=ImgRaw&r=0"
+        width="200"
+      />
+
+      <p>
+        某城市发生了一起汽车撞人逃跑事件，该城市只有两种颜色的车，蓝色占15%，绿色占85%。<br />
+        事发时有一个人在现场看见了肇事车辆，他指证那是蓝车。<br />
+        但是根据专家在现场分析，当时那种条件能看正确的可能性是80%。<br />
+        那么，肇事的车是蓝车的概率到底是多少？
+      </p>
+      <p>请输入你的答案：</p>
+      <div class="reaction">
+        <input type="text" id="answer" name="answer" />
+
+        <button onclick="check()">提交</button>
+        <button onclick="showExplanation()">解析</button>
+      </div>
+      <p id="result"></p>
+    </div>
+      <div class="explain-card">
+        <div id="explanation" style="display: none">
+        这是一个贝叶斯定理问题。我们可以使用以下公式来计算：P(A|B) = P(B|A) *
+        P(A) /
+        P(B)。在这个问题中，A是肇事车辆为蓝色的事件，B是目击者指证为蓝色的事件。根据题目，我们知道：P(A)
+        = 0.15，P(B|A) = 0.8，P(B)可以通过全概率公式计算得出：P(B) = P(B|A) *
+        P(A) + P(B|Ac) * P(Ac)，其中Ac是肇事车辆为绿色的事件，P(Ac) =
+        0.85，P(B|Ac)是在肇事车辆实际为绿色的情况下，目击者错误地指证为蓝色的概率，这个概率我们不知道，但是我们可以假设目击者在看错的情况下，随机指证为蓝色或绿色，所以P(B|Ac)
+        =
+        0.5。将上述值代入公式，我们可以计算出P(A|B)的值。这就是在目击者指证为蓝色的情况下，肇事车辆实际为蓝色的概率。
+      </div>
+    </div>
+      </p>
+
+      <script>
+        function check() {
+          var answer = document.getElementById("answer").value;
+          var result;
+          if (answer == "50%" || answer == "0.5") {
+            result = "恭喜你，答对了！";
+          } else {
+            result = "很遗憾，答错了。";
+          }
+          document.getElementById("result").innerHTML = result;
+        }
+
+        function showExplanation() {
+          document.getElementById("explanation").style.display = "block";
+        }
+      </script>
+    </div>
+  </body>
+</html>
